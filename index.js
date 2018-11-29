@@ -13,7 +13,7 @@ const stringifyAttr = (attr) => {
 	return res.join(' ');
 };
 
-const stringifyTag = (node) => '<' + node.name + (typeof node.attr == 'object' ? (' ' + stringifyAttr(node.attr) + ' ') : ' ' ) + ( isSingle(node) ? '/>' : '>' );
+const stringifyTag = (node) => '<' + node.name + (typeof node.attr == 'object' ? (' ' + stringifyAttr(node.attr) + ' ') : '' ) + ( isSingle(node) ? '/>' : '>' );
 
 const recNodes = (nodes, tab = 0) => {
 	let result = '';
