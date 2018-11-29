@@ -1,4 +1,4 @@
-# js-to-xml
+# js-to-xml [![Build Status](https://travis-ci.com/colgatto/js-to-xml.svg?branch=master)](https://travis-ci.com/colgatto/js-to-xml) [![Coverage Status](https://coveralls.io/repos/github/colgatto/js-to-xml/badge.svg?branch=master)](https://coveralls.io/github/colgatto/js-to-xml?branch=master)
 Module for parse custom javascript object into xml, without dependencies
 
 ## Install
