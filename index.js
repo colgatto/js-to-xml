@@ -1,3 +1,5 @@
+const blockAttrType = ['object','function'];
+
 const isSingle = (node) => typeof node.single != "undefined" && node.single;
 
 const spacer = (tab=0) => {
@@ -8,8 +10,9 @@ const spacer = (tab=0) => {
 
 const stringifyAttr = (attr) => {
 	let res = [];
-	for(k in attr)
-		res.push(k + '="' + attr[k] + '"');
+	for(k in attr){
+		if(!blockAttrType.includes(typeof k)) res.push(k + '="' + attr[k] + '"');
+	}
 	return res.join(' ');
 };
 
