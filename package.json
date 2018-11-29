@@ -1,17 +1,15 @@
 {
   "name": "js-to-xml",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "parse javascript object into xml",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/colgatto/js-to-xml.git"
   },
   "author": "colgatto",
-  "license": "WTFPL",
+  "license": "RWTFPL",
   "bugs": {
     "url": "https://github.com/colgatto/js-to-xml/issues"
   },
