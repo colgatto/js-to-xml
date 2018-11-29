@@ -1,17 +1,26 @@
 {
   "name": "js-to-xml",
-  "version": "1.0.1",
+  "version": "0.1.2",
   "description": "parse javascript object into xml",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/colgatto/js-to-xml.git"
   },
-  "author": "colgatto",
+  "author": "Colgatto",
   "license": "RWTFPL",
   "bugs": {
     "url": "https://github.com/colgatto/js-to-xml/issues"
   },
-  "homepage": "https://github.com/colgatto/js-to-xml#readme"
+  "homepage": "https://github.com/colgatto/js-to-xml#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
 }

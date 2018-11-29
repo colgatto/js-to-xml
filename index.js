@@ -7,6 +7,7 @@ const spacer = (tab=0) => {
 	for(let i=0;i<tab;i++) space += '\t';
 	return space;
 }
+'use strict';
 
 const stringifyAttr = (attr) => {
 	let res = [];
@@ -37,11 +38,14 @@ const recNodes = (nodes, tab = 0) => {
 	return result;
 };
 
-const jsToXml = (obj) => {
+/**
+ * convert Object to xml
+ * @param {object} obj
+ * @return {string}
+ */
+module.exports = function(obj){
 	let result = typeof obj.header == "string" ? ( obj.header + '\n' ) : '';
-	if(typeof obj.node == "object");
+	if(typeof obj.node == "object")
 		result += recNodes(obj.node);
 	return result;
 };
-
-module.exports = jsToXml;
