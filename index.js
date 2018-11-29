@@ -41,4 +41,4 @@ const jsToXml = (obj) => {
 	return result;
 };
 
-module.exports.jsToXml = jsToXml;
+module.exports = jsToXml;
