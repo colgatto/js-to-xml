@@ -11,7 +11,7 @@ const spacer = (tab=0) => {
 const stringifyAttr = (attr) => {
 	let res = [];
 	for(k in attr){
-		if(!blockAttrType.includes(typeof k)) res.push(k + '="' + attr[k] + '"');
+		if(!blockAttrType.includes(typeof attr[k])) res.push(k + '="' + attr[k] + '"');
 	}
 	return res.join(' ');
 };
