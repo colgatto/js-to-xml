@@ -61,6 +61,41 @@ describe('#jsToXml', function() {
 		    	}]
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<parent attribute1="one" attribute2="two" >\n\t<child attribute3="3" attribute4="4" >text</child>\n</parent>\n');
+        expect(result).to.equal('<?xml ?>\n<parent attribute1="one" attribute2="two">\n\t<child attribute3="3" attribute4="4">text</child>\n</parent>\n');
+	});
+	it('parse tag with wrong attribute', function() {
+        var result = jsToXml({header:'<?xml ?>',
+        	node:[{
+        		name:'parent',
+        		attr:{
+        			attribute1: 'one',
+        			attribute2: () => 4
+        		},
+        		node:[{
+		    		name:'child',
+		    		attr:{
+		    			attribute3: 3,
+		    			attribute4: {a:1,b:2}
+		    		},
+		    		node: 'text'
+		    	}]
+        	}]
+        });
+        expect(result).to.equal('<?xml ?>\n<parent attribute1="one">\n\t<child attribute3="3">text</child>\n</parent>\n');
+	});
+	it('parse tag with wrong node', function() {
+        var result = jsToXml({header:'<?xml ?>',
+        	node:[{
+        		name:'parent',
+        		node:[{
+		    		name:'child1',
+		    		node: 'text'
+		    	},{
+		    		name:'child2',
+		    		node: () => 2
+		    	}]
+        	}]
+        });
+        expect(result).to.equal('<?xml ?>\n<parent>\n\t<child1>text</child1>\n\t<child2></child2>\n</parent>\n');
     });
 });

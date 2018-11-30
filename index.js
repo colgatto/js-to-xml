@@ -1,3 +1,5 @@
+'use strict';
+
 const blockAttrType = ['object','function'];
 
 const isSingle = (node) => typeof node.single != "undefined" && node.single;
@@ -7,17 +9,17 @@ const spacer = (tab=0) => {
 	for(let i=0;i<tab;i++) space += '\t';
 	return space;
 }
-'use strict';
 
 const stringifyAttr = (attr) => {
 	let res = [];
-	for(k in attr){
-		if(!blockAttrType.includes(typeof attr[k])) res.push(k + '="' + attr[k] + '"');
+	for(let k in attr){
+		if(!blockAttrType.includes(typeof attr[k]))
+			res.push(k + '="' + attr[k] + '"');
 	}
 	return res.join(' ');
 };
 
-const stringifyTag = (node) => '<' + node.name + (typeof node.attr == 'object' ? (' ' + stringifyAttr(node.attr) + ' ') : '' ) + ( isSingle(node) ? '/>' : '>' );
+const stringifyTag = (node) => '<' + node.name + (typeof node.attr == 'object' ? (' ' + stringifyAttr(node.attr)) : '' ) + ( isSingle(node) ? '/>' : '>' );
 
 const recNodes = (nodes, tab = 0) => {
 	let result = '';
@@ -27,13 +29,13 @@ const recNodes = (nodes, tab = 0) => {
 			result += '\n';
 			continue;
 		}
-		if(typeof nodes[i].node == "object")
-			result += '\n' + recNodes(nodes[i].node, tab+1);
-		else if(typeof nodes[i].node == "string"){
+		if(typeof nodes[i].node == "string"){
 			result += nodes[i].node + '</' + nodes[i].name + '>\n';
 			continue;
 		}
-		result += spacer(tab) + '</' + nodes[i].name + '>\n'
+		if(typeof nodes[i].node == "object")
+			result += '\n' + recNodes(nodes[i].node, tab+1) + spacer(tab);
+		result += '</' + nodes[i].name + '>\n';
 	}
 	return result;
 };
