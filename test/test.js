@@ -21,6 +21,26 @@ describe('#jsToXml', function() {
         	}]
         });
         expect(result).to.equal('<?xml ?>\r\n<tag/>\r\n');
+	});
+	it('parse with different endOfLine (\\n)', function() {
+        var result = jsToXml({header:'<?xml ?>',
+        	node:[{
+        		name:'tag',
+        		node: 'text',
+        		single: true
+        	}]
+        },'\n');
+        expect(result).to.equal('<?xml ?>\n<tag/>\n');
+	});
+	it('parse with different endOfLine (\\r\\n\\r\\n)', function() {
+        var result = jsToXml({header:'<?xml ?>',
+        	node:[{
+        		name:'tag',
+        		node: 'text',
+        		single: true
+        	}]
+        },'\r\n\r\n');
+        expect(result).to.equal('<?xml ?>\r\n\r\n<tag/>\r\n\r\n');
     });
     it('parse regular tag', function() {
         var result = jsToXml({header:'<?xml ?>',

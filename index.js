@@ -2,6 +2,8 @@
 
 const blockAttrType = ['object','function'];
 
+let end_of_line = '\r\n';
+
 const isSingle = (node) => typeof node.single != "undefined" && node.single;
 
 const spacer = (tab=0) => {
@@ -26,16 +28,16 @@ const recNodes = (nodes, tab = 0) => {
 	for(let i=0, l=nodes.length; i<l; i++){
 		result += spacer(tab) + stringifyTag(nodes[i]);
 		if(isSingle(nodes[i])){
-			result += '\r\n';
+			result += end_of_line;
 			continue;
 		}
 		if(typeof nodes[i].node == "string"){
-			result += nodes[i].node + '</' + nodes[i].name + '>\r\n';
+			result += nodes[i].node + '</' + nodes[i].name + '>' + end_of_line;
 			continue;
 		}
 		if(typeof nodes[i].node == "object")
-			result += '\r\n' + recNodes(nodes[i].node, tab+1) + spacer(tab);
-		result += '</' + nodes[i].name + '>\r\n';
+			result += end_of_line + recNodes(nodes[i].node, tab+1) + spacer(tab);
+		result += '</' + nodes[i].name + '>' + end_of_line;
 	}
 	return result;
 };
@@ -45,8 +47,9 @@ const recNodes = (nodes, tab = 0) => {
  * @param {object} obj
  * @return {string}
  */
-module.exports = function(obj){
-	let result = typeof obj.header == "string" ? ( obj.header + '\r\n' ) : '';
+module.exports = function(obj, endOfLine = '\r\n'){
+	end_of_line = endOfLine;
+	let result = typeof obj.header == "string" ? ( obj.header + end_of_line ) : '';
 	if(typeof obj.node == "object")
 		result += recNodes(obj.node);
 	return result;
