@@ -10,7 +10,7 @@ describe('#jsToXml', function() {
     });
     it('parse only header', function() {
         var result = jsToXml({header:'<?xml ?>'});
-        expect(result).to.equal('<?xml ?>\n');
+        expect(result).to.equal('<?xml ?>\r\n');
     });
     it('parse single tag', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -20,7 +20,7 @@ describe('#jsToXml', function() {
         		single: true
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<tag/>\n');
+        expect(result).to.equal('<?xml ?>\r\n<tag/>\r\n');
     });
     it('parse regular tag', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -29,7 +29,7 @@ describe('#jsToXml', function() {
         		node: 'text'
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<tag>text</tag>\n');
+        expect(result).to.equal('<?xml ?>\r\n<tag>text</tag>\r\n');
     });
     it('parse parent and child tag', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -41,7 +41,7 @@ describe('#jsToXml', function() {
 		    	}]
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<parent>\n\t<child>text</child>\n</parent>\n');
+        expect(result).to.equal('<?xml ?>\r\n<parent>\r\n\t<child>text</child>\r\n</parent>\r\n');
     });
     it('parse parent and child tag with attribute', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -61,7 +61,7 @@ describe('#jsToXml', function() {
 		    	}]
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<parent attribute1="one" attribute2="two">\n\t<child attribute3="3" attribute4="4">text</child>\n</parent>\n');
+        expect(result).to.equal('<?xml ?>\r\n<parent attribute1="one" attribute2="two">\r\n\t<child attribute3="3" attribute4="4">text</child>\r\n</parent>\r\n');
 	});
 	it('parse tag with wrong attribute', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -81,7 +81,7 @@ describe('#jsToXml', function() {
 		    	}]
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<parent attribute1="one">\n\t<child attribute3="3">text</child>\n</parent>\n');
+        expect(result).to.equal('<?xml ?>\r\n<parent attribute1="one">\r\n\t<child attribute3="3">text</child>\r\n</parent>\r\n');
 	});
 	it('parse tag with wrong node', function() {
         var result = jsToXml({header:'<?xml ?>',
@@ -96,6 +96,6 @@ describe('#jsToXml', function() {
 		    	}]
         	}]
         });
-        expect(result).to.equal('<?xml ?>\n<parent>\n\t<child1>text</child1>\n\t<child2></child2>\n</parent>\n');
+        expect(result).to.equal('<?xml ?>\r\n<parent>\r\n\t<child1>text</child1>\r\n\t<child2></child2>\r\n</parent>\r\n');
     });
 });

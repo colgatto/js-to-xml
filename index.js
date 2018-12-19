@@ -26,16 +26,16 @@ const recNodes = (nodes, tab = 0) => {
 	for(let i=0, l=nodes.length; i<l; i++){
 		result += spacer(tab) + stringifyTag(nodes[i]);
 		if(isSingle(nodes[i])){
-			result += '\n';
+			result += '\r\n';
 			continue;
 		}
 		if(typeof nodes[i].node == "string"){
-			result += nodes[i].node + '</' + nodes[i].name + '>\n';
+			result += nodes[i].node + '</' + nodes[i].name + '>\r\n';
 			continue;
 		}
 		if(typeof nodes[i].node == "object")
-			result += '\n' + recNodes(nodes[i].node, tab+1) + spacer(tab);
-		result += '</' + nodes[i].name + '>\n';
+			result += '\r\n' + recNodes(nodes[i].node, tab+1) + spacer(tab);
+		result += '</' + nodes[i].name + '>\r\n';
 	}
 	return result;
 };
@@ -46,7 +46,7 @@ const recNodes = (nodes, tab = 0) => {
  * @return {string}
  */
 module.exports = function(obj){
-	let result = typeof obj.header == "string" ? ( obj.header + '\n' ) : '';
+	let result = typeof obj.header == "string" ? ( obj.header + '\r\n' ) : '';
 	if(typeof obj.node == "object")
 		result += recNodes(obj.node);
 	return result;
