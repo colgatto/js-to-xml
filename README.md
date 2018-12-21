@@ -5,45 +5,62 @@ Module for parse custom javascript object into xml, without dependencies
 ```sh
 npm install --save git+https://github.com/colgatto/js-to-xml.git
 ```
+
+## Sintax
+    jsToXml(data [,config]);
+|parameter|value|
+|-|-|
+| data | `Object` |
+| config (Optional) |  `Object` |
+
+`config` parameter:
+|parameter|type|default value
+|-|-|-|
+| end_of_line | `String` | ```"\r\n"```
+| tab_character |  `String` | ```"\t"```
+| header |  `String` |  ```"<?xml version="1.0" encoding="UTF-8"?>"```
+
+
 ## Usage
 ```javascript
 let jsToXml = require('js-to-xml');
+
 let data = {
-	header: '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>',
+	name: 'root',
+	attr: {
+		creator: 'author',
+		typename: 'Article',
+		version: 2
+	},
 	node: [{
-		name: 'root',
+		name: 'child1',
 		attr: {
-			creator: 'author',
-			typename: 'Article',
-			version: 2
+			comment: 'comment',
+			number: 3
 		},
 		node: [{
-			name: 'child1',
+			name: 'child11',
+			single: true,
 			attr: {
-				comment: 'comment',
-				number: 3
-			},
-			node: [{
-				name: 'child11',
-				single: true,
-				attr: {
-					name: 'child name'
-				}
-			}]
-		},{
-			name: 'child2',
-			node: 'text'
+				name: 'child name'
+			}
 		}]
+	},{
+		name: 'child2',
+		node: 'text'
 	}]
-}
-console.log(data);
+};
+
+let xml_output = jsToXml(data);
+
+console.log(xml_output);
 ```
-### result
+## result
 ```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<root creator="author" typename="Article" version="2" >
-	<child1 comment="comment" number="3" >
-		<child11 name="child name" />
+<?xml version="1.0" encoding="UTF-8"?>
+<root creator="author" typename="Article" version="2">
+	<child1 comment="comment" number="3">
+		<child11 name="child name"/>
 	</child1>
 	<child2>text</child2>
 </root>
