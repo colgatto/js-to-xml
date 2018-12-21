@@ -8,17 +8,17 @@ npm install --save git+https://github.com/colgatto/js-to-xml.git
 
 ## Sintax
     jsToXml(data [,config]);
-|parameter|value|
+| parameter | type |
 |-|-|
-| data | `Object` |
-| config (Optional) |  `Object` |
+| data | Object |
+| config (Optional) | Object |
 
 `config` parameter:
-|parameter|type|default value
+| parameter | type | default value |
 |-|-|-|
-| end_of_line | `String` | ```"\r\n"```
-| tab_character |  `String` | ```"\t"```
-| header |  `String` |  ```"<?xml version="1.0" encoding="UTF-8"?>"```
+| end_of_line | String | `\r\n` |
+| tab_character | String | `\t` |
+| header | String | `<?xml version="1.0" encoding="UTF-8"?>` |
 
 
 ## Usage
