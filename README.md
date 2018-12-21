@@ -14,11 +14,12 @@ npm install --save git+https://github.com/colgatto/js-to-xml.git
 | config (Optional) | Object |
 
 `config` parameter:
+
 | parameter | type | default value |
 |-|-|-|
-| end_of_line | String | `\r\n` |
-| tab_character | String | `\t` |
-| header | String | `<?xml version="1.0" encoding="UTF-8"?>` |
+| end_of_line | String | \r\n |
+| tab_character | String | \t |
+| header | String | <?xml version="1.0" encoding="UTF-8"?> |
 
 
 ## Usage
